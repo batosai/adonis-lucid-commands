@@ -2,7 +2,7 @@ import type { CommandOptions } from '@adonisjs/core/types/ace'
 import type { DatabaseConfig } from '@adonisjs/lucid/types/database'
 
 import { BaseCommand, flags } from '@adonisjs/core/ace'
-import DatabaseService from '../src/services/database_service.js'
+import DatabaseService from '../../src/services/database_service.js'
 
 export default class DbCreate extends BaseCommand {
   static commandName = 'db:create'

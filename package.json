@@ -23,6 +23,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "npm run clean && tsc",
+    "postbuild": "adonis-kit index build/commands",
     "prepublishOnly": "npm run build",
     "clean": "del-cli build",
     "format": "prettier --write ."
