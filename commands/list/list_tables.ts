@@ -1,8 +1,8 @@
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import type { DatabaseConfig } from '@adonisjs/lucid/types/database'
+import type { Database } from '@adonisjs/lucid/database'
 
 import { BaseCommand, flags } from '@adonisjs/core/ace'
-import db from '@adonisjs/lucid/services/db'
 
 export default class ListTables extends BaseCommand {
   static commandName = 'list:tables'
@@ -16,6 +16,7 @@ export default class ListTables extends BaseCommand {
   declare name: string
 
   async run() {
+    const db: Database = await this.app.container.make('lucid.db')
     const config = this.app.config.get<DatabaseConfig>('database')
 
     if (!this.name) {
