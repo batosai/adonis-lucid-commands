@@ -37,9 +37,11 @@ export default class DbCreate extends BaseCommand {
 
     try {
       await databaseService.connect()
-      const databaseName = typeof connectionConfig.connection === 'string'
-      ? connectionConfig.connection
-      : (connectionConfig.connection as any)?.database || (connectionConfig.connection as any)?.filename
+      const databaseName =
+        typeof connectionConfig.connection === 'string'
+          ? connectionConfig.connection
+          : (connectionConfig.connection as any)?.database ||
+            (connectionConfig.connection as any)?.filename
 
       // Check if database exists
       const result = await databaseService.checkDatabaseExists(databaseName)

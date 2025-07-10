@@ -51,19 +51,16 @@ export default class PgService {
   async checkDatabaseExists(databaseName: string) {
     if (!this.#knex) throw new Error('Not connected to database')
 
-    const result = await this.#knex.raw(
-      'SELECT 1 FROM pg_database WHERE datname = ?',
-      [databaseName]
-    )
+    const result = await this.#knex.raw('SELECT 1 FROM pg_database WHERE datname = ?', [
+      databaseName,
+    ])
     return result.rowCount > 0
   }
 
   async checkTableExists(databaseName: string, tableName: string) {
     if (!this.#knex) throw new Error('Not connected to database')
 
-    const result = await this.#knex.raw(
-      `SELECT 1 FROM ${databaseName}.${tableName} LIMIT 1`
-    )
+    const result = await this.#knex.raw(`SELECT 1 FROM ${databaseName}.${tableName} LIMIT 1`)
     return result.rowCount > 0
   }
 }

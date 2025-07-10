@@ -27,9 +27,10 @@ export default class ListDatabases extends BaseCommand {
 
     Object.keys(config.connections).forEach((key: string) => {
       const connection = config.connections[key].connection
-      const databaseName = typeof connection === 'string'
-        ? connection
-        : (connection as any)?.database || (connection as any)?.filename
+      const databaseName =
+        typeof connection === 'string'
+          ? connection
+          : (connection as any)?.database || (connection as any)?.filename
       formsTable.row([key, config.connections[key].client, databaseName])
     })
 

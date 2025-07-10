@@ -40,14 +40,15 @@ export default class DbDrop extends BaseCommand {
       return
     }
 
-
     const databaseService = await DatabaseService.execute(connectionConfig)
 
     try {
       await databaseService.connect()
-      const databaseName = typeof connectionConfig.connection === 'string'
-        ? connectionConfig.connection
-        : (connectionConfig.connection as any)?.database || (connectionConfig.connection as any)?.filename
+      const databaseName =
+        typeof connectionConfig.connection === 'string'
+          ? connectionConfig.connection
+          : (connectionConfig.connection as any)?.database ||
+            (connectionConfig.connection as any)?.filename
 
       // Check if database exists
       const result = await databaseService.checkDatabaseExists(databaseName)
@@ -57,15 +58,12 @@ export default class DbDrop extends BaseCommand {
         return
       }
 
-      const deleteFiles = await this.prompt.confirm(
-        `Want to delete ${databaseName} files?`
-      )
+      const deleteFiles = await this.prompt.confirm(`Want to delete ${databaseName} files?`)
 
       if (deleteFiles) {
         await databaseService.dropDatabase(databaseName)
         this.logger.success(`Database ${databaseName} dropped successfully`)
       }
-
     } catch (error) {
       this.logger.error(`Failed to drop database: ${error.message}`)
     } finally {

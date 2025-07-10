@@ -23,7 +23,10 @@ export default class ListTables extends BaseCommand {
       if (Object.keys(config.connections).length === 1) {
         this.name = config.connection
       } else {
-        this.name = await this.prompt.choice('Select package manager', Object.keys(config.connections))
+        this.name = await this.prompt.choice(
+          'Select package manager',
+          Object.keys(config.connections)
+        )
       }
     }
 

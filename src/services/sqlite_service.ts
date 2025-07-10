@@ -42,9 +42,7 @@ export default class SqliteService {
   async createDatabase(_databaseName: string) {
     if (!this.#knex) throw new Error('Not connected to database')
 
-    await this.#knex.raw(
-      "SELECT 1"
-    )
+    await this.#knex.raw('SELECT 1')
   }
 
   async dropDatabase(_databaseName: string) {
