@@ -23,7 +23,6 @@ export default class DbDrop extends BaseCommand {
     }
 
     const config = this.app.config.get<DatabaseConfig>('database')
-    const connectionConfig = config.connections[this.name]
 
     if (!config) {
       this.logger.error('Database config not found')
@@ -33,6 +32,8 @@ export default class DbDrop extends BaseCommand {
     if (!this.name) {
       this.name = config.connection
     }
+
+    const connectionConfig = config.connections[this.name]
 
     if (!connectionConfig) {
       this.logger.error(`Database config for ${this.name} not found`)
@@ -56,9 +57,15 @@ export default class DbDrop extends BaseCommand {
         return
       }
 
-      // Drop database
-      await databaseService.dropDatabase(databaseName)
-      this.logger.success(`Database ${databaseName} dropped successfully`)
+      const deleteFiles = await this.prompt.confirm(
+        `Want to delete ${databaseName} files?`
+      )
+
+      if (deleteFiles) {
+        await databaseService.dropDatabase(databaseName)
+        this.logger.success(`Database ${databaseName} dropped successfully`)
+      }
+
     } catch (error) {
       this.logger.error(`Failed to drop database: ${error.message}`)
     } finally {

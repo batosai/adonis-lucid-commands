@@ -17,7 +17,6 @@ export default class DbCreate extends BaseCommand {
 
   async run() {
     const config = this.app.config.get<DatabaseConfig>('database')
-    const connectionConfig = config.connections[this.name]
 
     if (!config) {
       this.logger.error('Database config not found')
@@ -27,6 +26,7 @@ export default class DbCreate extends BaseCommand {
     if (!this.name) {
       this.name = config.connection
     }
+    const connectionConfig = config.connections[this.name]
 
     if (!connectionConfig) {
       this.logger.error(`Database config for ${this.name} not found`)
