@@ -10,6 +10,7 @@ This package provides additional Ace commands for AdonisJS applications to manag
 
 - **`db:create`** - Create a new database
 - **`db:drop`** - Drop an existing database (with production safety)
+- **`db:query`** - Execute a raw SQL query on the database
 
 ### Database Exploration Commands
 
@@ -57,6 +58,38 @@ node ace db:drop --name=mysql
 ```
 
 **⚠️ Safety Note:** The `db:drop` command is disabled in production environments to prevent accidental data loss.
+
+#### Query a Database
+
+```bash
+# Execute a SQL query
+node ace db:query 'SELECT * FROM users'
+
+# Execute a query on a specific connection
+node ace db:query 'SELECT * FROM users' --name=mysql
+```
+
+##### Output Formats
+
+The command supports multiple output formats:
+
+**Table format (default)** - Results displayed in a formatted table with truncated long values:
+
+```bash
+node ace db:query 'SELECT * FROM users'
+```
+
+**JSON format** - Results displayed as formatted JSON (ideal for complex data or piping):
+
+```bash
+node ace db:query 'SELECT * FROM users' --json
+```
+
+**Vertical format** - Each row displayed as a block with one column per line (like MySQL `\G`):
+
+```bash
+node ace db:query 'SELECT * FROM users' --vertical
+```
 
 ### Database Exploration
 
