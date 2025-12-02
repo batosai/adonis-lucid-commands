@@ -12,7 +12,7 @@ export default class ListDatabases extends BaseCommand {
     startApp: true,
   }
 
-  @flags.string()
+  @flags.string({ description: 'Database connection name' })
   declare name: string
 
   async run() {

@@ -12,7 +12,7 @@ export default class DbDrop extends BaseCommand {
     startApp: true,
   }
 
-  @flags.string()
+  @flags.string({ description: 'Database connection name' })
   declare name: string
 
   async run() {
