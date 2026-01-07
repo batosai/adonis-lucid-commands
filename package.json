@@ -45,8 +45,8 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@adonisjs/core": "^6.12.1",
-    "@adonisjs/lucid": "^20.6.0 || ^21.0.0"
+    "@adonisjs/core": "^6.12.1 || ^7.0.0",
+    "@adonisjs/lucid": "^20.6.0 || ^21.0.0 || ^22.0.0"
   },
   "prettier": "@adonisjs/prettier-config",
   "publishConfig": {
