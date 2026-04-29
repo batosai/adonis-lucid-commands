@@ -1,6 +1,6 @@
 # @jrmc/adonis-lucid-commands
 
-Additional commands for AdonisJS 6 Lucid ORM to help with database management and exploration.
+Additional commands for AdonisJS 6/7 Lucid ORM to help with database management and exploration.
 
 ## Features
 
@@ -129,8 +129,8 @@ The package supports the following database clients:
 
 ## Requirements
 
-- AdonisJS Core: `^6.12.1`
-- AdonisJS Lucid: `^20.6.0 || ^21.0.0`
+- AdonisJS Core: `^6.12.1` || `^7.0.0`
+- AdonisJS Lucid: `^20.6.0 || ^21.0.0 ||  ^22.0.0`
 
 
 ## License
